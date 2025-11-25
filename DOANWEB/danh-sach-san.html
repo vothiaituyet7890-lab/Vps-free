@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sân - SportBooking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/DOANWEB/styles.css">
+    <link rel="stylesheet" href="/DOANWEB/booking-new.css">
+    <style>
+        /* Đảm bảo nội dung không bị che bởi header */
+        .courts-page {
+            padding-top: 80px;
+        }
+        
+        /* Căn giữa nội dung */
+        .container-wide {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/DOANWEB/index.html" class="logo">SportBooking</a>
+            <nav class="nav">
+                <a href="/DOANWEB/index.html">Trang chủ</a>
+                <a href="/DOANWEB/gioithieu.html">Giới thiệu</a>
+                <a href="/DOANWEB/timkiem.html">Tìm kiếm</a>
+                <a href="/DOANWEB/danh-sach-san.html">Danh sách sân</a>
+                <a href="/DOANWEB/danh-sach-san.html">Đặt sân</a>
+                <a href="/DOANWEB/lienhe.html">Liên hệ</a>
+                <a href="/DOANWEB/login.html" class="btn btn-primary btn-sm" id="loginBtn">Đăng nhập</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section courts-page">
+        <div class="container-wide">
+            <!-- Page Header -->
+            <div class="page-header-modern">
+                <div class="page-header-content">
+                    <h1>🏟️ Danh sách sân thể thao</h1>
+                    <p>Chọn sân yêu thích và đặt lịch ngay hôm nay</p>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar-modern">
+                <div class="filter-search">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="searchCourt" 
+                        placeholder="Tìm kiếm sân..." 
+                        oninput="filterCourts()"
+                    />
+                </div>
+                <select id="filterCourtType" class="filter-select" onchange="filterCourts()">
+                    <option value="">Tất cả loại sân</option>
+                </select>
+                <select id="filterCourtStatus" class="filter-select" onchange="filterCourts()">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="trong">Sẵn sàng</option>
+                    <option value="dang_thue">Đang được thuê</option>
+                    <option value="bao_tri">Đang bảo trì</option>
+                </select>
+                <div class="filter-count" id="courtCount">Đang tải...</div>
+            </div>
+
+            <!-- Courts Grid -->
+            <div class="courts-grid-modern" id="courtsGrid">
+                <!-- Loading state -->
+                <div class="loading-state-modern">
+                    <div class="loading-spinner-modern">⏳</div>
+                    <p>Đang tải danh sách sân...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p> 2025 SportBooking</p>
+    </footer>
+
+    <script src="/DOANWEB/auth.js"></script>
+    <script src="/DOANWEB/js/common.js?v=1"></script>
+    <script src="/DOANWEB/danh-sach-san.js"></script>
+</body>
+</html>

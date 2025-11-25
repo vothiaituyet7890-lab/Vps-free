@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SportBooking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🏟️ SportBooking</h2>
+            <p class="admin-badge">ADMIN PANEL</p>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" onclick="showSection('dashboard')">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+            </a>
+            
+            <div class="nav-group">
+                <div class="nav-group-title">Quản lý</div>
+                
+                <a href="#employees" class="nav-item" onclick="showSection('employees')">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Nhân viên</span>
+                </a>
+                <a href="/DOANWEB/admin-phan-cong.html" class="nav-item">
+                    <span class="nav-icon">🕒</span>
+                    <span class="nav-text">Phân công ca</span>
+                </a>
+                
+                <a href="#courts" class="nav-item" onclick="showSection('courts')">
+                    <span class="nav-icon">🏟️</span>
+                    <span class="nav-text">Sân thể thao</span>
+                </a>
+                
+                <a href="#court-types" class="nav-item" onclick="showSection('court-types')">
+                    <span class="nav-icon">⚽</span>
+                    <span class="nav-text">Loại sân & Giá</span>
+                </a>
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-group-title">Đơn đặt & Khách hàng</div>
+                
+                <a href="#bookings" class="nav-item" onclick="showSection('bookings')">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">Đơn đặt sân</span>
+                </a>
+                
+                <a href="#users" class="nav-item" onclick="showSection('users')">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Người dùng</span>
+                </a>
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-group-title">Báo cáo & Thống kê</div>
+                
+                <a href="#revenue" class="nav-item" onclick="showSection('revenue')">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-text">Doanh thu</span>
+                </a>
+                
+                <a href="#reports" class="nav-item" onclick="showSection('reports')">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Báo cáo</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <button class="btn-toggle-sidebar" onclick="toggleSidebar()">
+                <span>☰</span>
+            </button>
+            
+            <div class="topbar-right">
+                <div class="admin-user-info">
+                    <span class="admin-user-name" id="adminName">Admin</span>
+                    <div class="admin-user-avatar">👤</div>
+                </div>
+                <button class="btn-logout" onclick="logout()">
+                    <span>🚪</span> Đăng xuất
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="section-dashboard" class="admin-section active">
+            <div class="section-header">
+                <h1>📊 Tổng quan hệ thống</h1>
+                <p>Thống kê tổng quan về hoạt động đặt sân</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        💰
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Doanh thu hôm nay</div>
+                        <div class="stat-value" id="todayRevenue">0đ</div>
+                        <div class="stat-change positive">+12.5%</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        📋
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Đơn đặt hôm nay</div>
+                        <div class="stat-value" id="todayBookings">0</div>
+                        <div class="stat-change positive">+8 đơn</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        🏟️
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Sân đang hoạt động</div>
+                        <div class="stat-value" id="activeCourts">0</div>
+                        <div class="stat-change">Tổng số sân</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        👥
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">Người dùng</div>
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-change">Tổng tài khoản</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="admin-card">
+                <div class="card-header">
+                    <h3>📋 Đơn đặt sân gần đây</h3>
+                    <a href="#bookings" onclick="showSection('bookings')" class="btn-view-all">Xem tất cả →</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn</th>
+                                <th>Khách hàng</th>
+                                <th>Sân</th>
+                                <th>Ngày</th>
+                                <th>Giờ</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentBookingsTable">
+                            <tr>
+                                <td colspan="7" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employees Section -->
+        <section id="section-employees" class="admin-section">
+            <div class="section-header">
+                <h1>👥 Quản lý nhân viên</h1>
+                <button class="btn btn-primary" onclick="openEmployeeModal()">
+                    <span>➕</span> Thêm nhân viên
+                </button>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" placeholder="🔍 Tìm kiếm theo tên nhân viên..." id="searchEmployee" oninput="searchEmployees()">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã NV</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Chức vụ</th>
+                                <th>Chấm công hôm nay</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeesTable">
+                            <tr>
+                                <td colspan="7" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7" style="text-align: right; padding: 15px;">
+                                    <button class="btn btn-success" onclick="showSalaryReport()">
+                                        <span>💰</span> Tổng lương tháng
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courts Section -->
+        <section id="section-courts" class="admin-section">
+            <div class="section-header">
+                <h1>🏟️ Quản lý sân thể thao</h1>
+                <button class="btn btn-primary" onclick="openCourtModal()">
+                    <span>➕</span> Thêm sân
+                </button>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" placeholder="🔍 Tìm kiếm theo tên sân..." id="searchCourt" oninput="searchCourts()">
+                    </div>
+                    <select class="filter-select" id="filterCourtType" onchange="filterCourtsByType()">
+                        <option value="">Tất cả loại sân</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã sân</th>
+                                <th>Tên sân</th>
+                                <th>Loại sân</th>
+                                <th>Mô tả</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courtsTable">
+                            <tr>
+                                <td colspan="7" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Court Types Section -->
+        <section id="section-court-types" class="admin-section">
+            <div class="section-header">
+                <h1>⚽ Quản lý loại sân & Giá thuê</h1>
+                <button class="btn btn-primary" onclick="openCourtTypeModal()">
+                    <span>➕</span> Thêm loại sân
+                </button>
+            </div>
+
+            <div class="admin-card">
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã loại</th>
+                                <th>Tên loại sân</th>
+                                <th>Giá thuê/giờ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courtTypesTable">
+                            <tr>
+                                <td colspan="5" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section id="section-bookings" class="admin-section">
+            <div class="section-header">
+                <h1>📋 Quản lý đơn đặt sân</h1>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" placeholder="🔍 Tìm kiếm theo mã đơn, tên khách hàng..." id="searchBooking" oninput="searchBookings()">
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="filterBookingStatus" onchange="filterBookings()">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="cho_duyet">Chờ duyệt</option>
+                            <option value="da_duyet">Đã duyệt</option>
+                            <option value="huy">Đã hủy</option>
+                        </select>
+                        <input type="date" class="filter-date" id="filterBookingDate" onchange="filterBookings()">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã đơn</th>
+                                <th>Khách hàng</th>
+                                <th>Sân</th>
+                                <th>Ngày đặt</th>
+                                <th>Khung giờ</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTable">
+                            <tr>
+                                <td colspan="9" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section id="section-users" class="admin-section">
+            <div class="section-header">
+                <h1>👤 Quản lý người dùng</h1>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" placeholder="🔍 Tìm kiếm người dùng..." id="searchUser">
+                    </div>
+                    <select class="filter-select" id="filterUserStatus">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Đang hoạt động</option>
+                        <option value="locked">Đã khóa</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã TK</th>
+                                <th>Tên đăng nhập</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr>
+                                <td colspan="8" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenue Section -->
+        <section id="section-revenue" class="admin-section">
+            <div class="section-header">
+                <h1>💰 Thống kê doanh thu</h1>
+            </div>
+
+            <div class="revenue-filters">
+                <button class="filter-btn active" onclick="filterRevenue('day')">Theo ngày</button>
+                <button class="filter-btn" onclick="filterRevenue('month')">Theo tháng</button>
+                <button class="filter-btn" onclick="filterRevenue('year')">Theo năm</button>
+                <button class="filter-btn" onclick="filterRevenue('court')">Theo sân</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Tổng doanh thu tháng này</div>
+                        <div class="stat-value" id="monthRevenue">0đ</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Tổng đơn đặt tháng này</div>
+                        <div class="stat-value" id="monthBookings">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Trung bình/đơn</div>
+                        <div class="stat-value" id="avgRevenue">0đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <h3>📈 Biểu đồ doanh thu</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <h3>💰 Chi tiết doanh thu</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Số đơn</th>
+                                <th>Doanh thu</th>
+                                <th>Trung bình</th>
+                            </tr>
+                        </thead>
+                        <tbody id="revenueTable">
+                            <tr>
+                                <td colspan="4" class="text-center">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="section-reports" class="admin-section">
+            <div class="section-header">
+                <h1>📈 Xuất báo cáo</h1>
+            </div>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">📊</div>
+                    <h3>Báo cáo doanh thu</h3>
+                    <p>Xuất báo cáo doanh thu theo khoảng thời gian</p>
+                    <div class="report-actions">
+                        <input type="date" id="reportStartDate">
+                        <input type="date" id="reportEndDate">
+                        <button class="btn btn-primary" onclick="exportRevenueReport()">
+                            📥 Xuất Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">📋</div>
+                    <h3>Báo cáo đơn đặt sân</h3>
+                    <p>Xuất danh sách đơn đặt sân theo thời gian</p>
+                    <div class="report-actions">
+                        <input type="date" id="bookingReportStartDate">
+                        <input type="date" id="bookingReportEndDate">
+                        <button class="btn btn-primary" onclick="exportBookingReport()">
+                            📥 Xuất Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">🏟️</div>
+                    <h3>Báo cáo sử dụng sân</h3>
+                    <p>Thống kê tỷ lệ sử dụng từng sân</p>
+                    <div class="report-actions">
+                        <select id="courtReportMonth">
+                            <option value="">Chọn tháng</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="exportCourtReport()">
+                            📥 Xuất PDF
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">👥</div>
+                    <h3>Báo cáo khách hàng</h3>
+                    <p>Danh sách khách hàng và lịch sử đặt sân</p>
+                    <div class="report-actions">
+                        <button class="btn btn-primary" onclick="exportCustomerReport()">
+                            📥 Xuất Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Templates will be added via JavaScript -->
+    <div id="modalContainer"></div>
+
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

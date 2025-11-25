@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tìm kiếm sân - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/DOANWEB/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/DOANWEB/index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="/DOANWEB/index.html">Trang chủ</a>
+          <a href="/DOANWEB/gioithieu.html">Giới thiệu</a>
+          <a href="/DOANWEB/timkiem.html" class="active">Tìm kiếm</a>
+          <a href="/DOANWEB/danh-sach-san.html">Danh sách sân</a>
+          <a href="/DOANWEB/danh-sach-san.html">Đặt sân</a>
+          <a href="/DOANWEB/lienhe.html">Liên hệ</a>
+          <a href="/DOANWEB/danh-sach-san.html" class="btn btn-primary">Đặt sân ngay</a>
+          <a href="/DOANWEB/login.html" class="btn btn-primary btn-sm" id="loginBtn">Đăng nhập</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <!-- Search Header -->
+        <div class="search-header">
+          <h1>🔍 Tìm kiếm sân thể thao</h1>
+          <p>Chọn loại sân bạn muốn đặt và bắt đầu trải nghiệm</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+          <div class="search-bar">
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Tìm kiếm theo tên sân, địa điểm..." 
+              onkeyup="filterCourts()"
+            />
+            <button class="search-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Court Types Grid -->
+        <div class="court-types-grid" id="courtTypesGrid">
+          <!-- Bóng đá -->
+          <div class="court-type-card" data-type="bongda" onclick="goToBooking('bongda')">
+            <div class="court-type-image">
+              <div class="court-icon-large">⚽</div>
+              <div class="court-overlay">
+                <span class="view-details">Xem chi tiết →</span>
+              </div>
+            </div>
+            <div class="court-type-content">
+              <h3>Sân Bóng Đá</h3>
+              <p class="court-description">Sân cỏ nhân tạo 5v5, 7v7, 11v11</p>
+              <div class="court-features">
+                <span class="feature-tag">🏟️ Sân chuẩn</span>
+                <span class="feature-tag">💡 Đèn chiếu sáng</span>
+                <span class="feature-tag">🚿 Phòng thay đồ</span>
+              </div>
+              <div class="court-price">
+                <span class="price-label">Giá từ:</span>
+                <span class="price-value">300.000đ/giờ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cầu lông -->
+          <div class="court-type-card" data-type="caulong" onclick="goToBooking('caulong')">
+            <div class="court-type-image">
+              <div class="court-icon-large">🏸</div>
+              <div class="court-overlay">
+                <span class="view-details">Xem chi tiết →</span>
+              </div>
+            </div>
+            <div class="court-type-content">
+              <h3>Sân Cầu Lông</h3>
+              <p class="court-description">Sân cầu lông trong nhà, sàn gỗ cao cấp</p>
+              <div class="court-features">
+                <span class="feature-tag">🏛️ Trong nhà</span>
+                <span class="feature-tag">❄️ Điều hòa</span>
+                <span class="feature-tag">🎾 Lưới chuẩn</span>
+              </div>
+              <div class="court-price">
+                <span class="price-label">Giá từ:</span>
+                <span class="price-value">80.000đ/giờ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pickleball -->
+          <div class="court-type-card" data-type="pickleball" onclick="goToBooking('pickleball')">
+            <div class="court-type-image">
+              <div class="court-icon-large">🎾</div>
+              <div class="court-overlay">
+                <span class="view-details">Xem chi tiết →</span>
+              </div>
+            </div>
+            <div class="court-type-content">
+              <h3>Sân Pickleball</h3>
+              <p class="court-description">Sân pickleball hiện đại, phù hợp mọi lứa tuổi</p>
+              <div class="court-features">
+                <span class="feature-tag">🆕 Mới nhất</span>
+                <span class="feature-tag">👨‍👩‍👧‍👦 Gia đình</span>
+                <span class="feature-tag">🎯 Dễ chơi</span>
+              </div>
+              <div class="court-price">
+                <span class="price-label">Giá từ:</span>
+                <span class="price-value">100.000đ/giờ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bóng rổ -->
+          <div class="court-type-card" data-type="bongro" onclick="goToBooking('bongro')">
+            <div class="court-type-image">
+              <div class="court-icon-large">🏀</div>
+              <div class="court-overlay">
+                <span class="view-details">Xem chi tiết →</span>
+              </div>
+            </div>
+            <div class="court-type-content">
+              <h3>Sân Bóng Rổ</h3>
+              <p class="court-description">Sân bóng rổ ngoài trời và trong nhà</p>
+              <div class="court-features">
+                <span class="feature-tag">🏀 Rổ chuẩn NBA</span>
+                <span class="feature-tag">🌟 Sân đẹp</span>
+                <span class="feature-tag">👥 3v3, 5v5</span>
+              </div>
+              <div class="court-price">
+                <span class="price-label">Giá từ:</span>
+                <span class="price-value">200.000đ/giờ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="search-info-section">
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <h4>Nhiều địa điểm</h4>
+            <p>Hệ thống sân rộng khắp thành phố</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⚡</div>
+            <h4>Đặt nhanh chóng</h4>
+            <p>Chỉ với vài thao tác đơn giản</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">💰</div>
+            <h4>Giá cả hợp lý</h4>
+            <p>Nhiều ưu đãi và khuyến mãi</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🎯</div>
+            <h4>Chất lượng đảm bảo</h4>
+            <p>Sân đạt tiêu chuẩn quốc tế</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p> 2025 SportBooking</p>
+    </footer>
+
+    <script src="/DOANWEB/auth.js"></script>
+    <script src="/DOANWEB/js/common.js?v=1"></script>
+    <script src="/DOANWEB/search.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nhân viên - Ca trực</title>
+  <link rel="stylesheet" href="/DOANWEB/styles.css" />
+  <style>
+    /* ===== Scoped styles for Staff Shifts page ===== */
+    .staff-shifts-page .page-title { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .staff-shifts-page .dot { width:14px; height:14px; border-radius:50%; background: linear-gradient(135deg,#8b5cf6,#6366f1); display:inline-block; }
+    .staff-shifts-page h1 { font-size:28px; line-height:1.2; margin:0; }
+
+    .staff-shifts-page .card { border:1px solid #e5e7eb; background:#fff; border-radius:14px; box-shadow: 0 4px 14px rgba(2,6,23,0.04); }
+    .staff-shifts-page .card + .card { margin-top:12px; }
+    .staff-shifts-page .toolbar { padding:14px 16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .staff-shifts-page .toolbar label { color:#334155; font-weight:600; }
+    .staff-shifts-page #signupDate { min-width: 210px; }
+
+    .staff-shifts-page table.table { width:100%; border-collapse:separate; border-spacing:0; }
+    .staff-shifts-page table.table thead th { background:#f8fafc; color:#0f172a; text-align:left; font-weight:700; padding:12px 14px; border-bottom:1px solid #e5e7eb; }
+    .staff-shifts-page table.table tbody td { padding:12px 14px; border-bottom:1px solid #eef2f7; vertical-align:middle; }
+    .staff-shifts-page table.table tbody tr:last-child td { border-bottom:none; }
+    .staff-shifts-page .count-pill { background:#eef2ff; color:#3730a3; padding:6px 10px; border-radius:999px; font-weight:600; display:inline-block; min-width:84px; text-align:center; }
+
+    .staff-shifts-page .btn { border-radius:10px; padding:8px 14px; font-weight:600; }
+    .staff-shifts-page .btn.btn-danger { background:#ef4444; border-color:#ef4444; }
+    .staff-shifts-page .btn.btn-danger:hover { background:#dc2626; }
+    .staff-shifts-page .btn.btn-primary { background:#6366f1; border-color:#6366f1; }
+    .staff-shifts-page .btn.btn-primary:hover { background:#4f46e5; }
+    .staff-shifts-page .btn:disabled { opacity:.6; cursor:not-allowed; }
+
+    .staff-shifts-page #cancelRequestHint { color:#64748b; padding:0 16px 16px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner" style="gap:12px">
+      <a href="/DOANWEB/index.html" class="logo">SportBooking</a>
+      <nav class="staff-top-nav" style="display:flex;gap:8px">
+        <a class="top-item" href="/DOANWEB/staff-bookings.html">📋 Đặt sân</a>
+        <a class="top-item" href="/DOANWEB/staff-payments.html">💵 Thanh toán</a>
+        <a class="top-item" href="/DOANWEB/staff-customers.html">👥 Khách hàng</a>
+        <a class="top-item" href="/DOANWEB/staff-courts.html">🏟️ Sân</a>
+        <a class="top-item active" href="/DOANWEB/staff-shifts.html">🕒 Ca trực</a>
+        <a class="top-item" href="/DOANWEB/staff-reports.html">📊 Báo cáo</a>
+      </nav>
+    </div>
+  </header>
+  <main class="section staff-shifts-page"><div class="container">
+    <div class="page-title"><span class="dot"></span><h1>Đăng ký ca trực</h1></div>
+    <div class="card">
+      <div class="toolbar">
+        <label>Ngày:</label>
+        <input id="signupDate" type="date" class="form-control" />
+        <button class="btn" id="btnReloadSignup">Tải ca</button>
+      </div>
+    </div>
+    <div class="card">
+      <table class="table" id="staffShiftSignupTable">
+        <thead><tr>
+          <th>Mã ca</th><th>Tên ca</th><th>Giờ</th><th>Đã đăng ký</th><th>Hành động</th>
+        </tr></thead>
+        <tbody>
+          <tr><td colspan="5">Đang tải...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="toolbar" style="padding-bottom:0"><h3>📝 Yêu cầu hủy ca đã đăng ký</h3></div>
+      <div class="toolbar">
+        <input id="cancelReason" class="form-control" placeholder="Lý do hủy ca (bắt buộc)" />
+        <button class="btn btn-danger" id="btnSendCancel" disabled>Gửi yêu cầu hủy</button>
+      </div>
+      <div id="cancelRequestHint"></div>
+    </div>
+  </div></main>
+  <script src="/DOANWEB/auth.js"></script>
+  <script src="/DOANWEB/staff.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Đăng ký - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="gioithieu.html">Giới thiệu</a>
+          <a href="danh-sach-san.html">Danh sách sân</a>
+          <a href="lienhe.html" class="btn btn-primary btn-sm">Liên hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-card card">
+            <div class="auth-header">
+              <h1>📝 Đăng ký tài khoản</h1>
+              <p>Tạo tài khoản để bắt đầu đặt sân thể thao</p>
+            </div>
+
+            <form id="registerForm" class="auth-form" autocomplete="off" autocapitalize="off" autocorrect="off">
+              <!-- Autofill bait fields (hidden) -->
+              <input type="text" name="name" autocomplete="name" style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;" tabindex="-1" aria-hidden="true" />
+              <input type="email" name="email" autocomplete="email" style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;" tabindex="-1" aria-hidden="true" />
+              <input type="tel" name="tel" autocomplete="tel" style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;" tabindex="-1" aria-hidden="true" />
+              <input type="password" name="password" autocomplete="new-password" style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;" tabindex="-1" aria-hidden="true" />
+              <div class="form-field">
+                <label for="registerName">Họ và tên *</label>
+                <input
+                  type="text"
+                  id="registerName"
+                  name="sb-name"
+                  placeholder="Nhập họ tên"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="registerEmail">Email *</label>
+                <input
+                  type="email"
+                  id="registerEmail"
+                  name="sb-email"
+                  placeholder="Nhập email"
+                  autocomplete="off"
+                  required
+                />
+                <small class="field-note"
+                  >Mỗi email chỉ được đăng ký 1 tài khoản</small
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="registerPhone">Số điện thoại *</label>
+                <input
+                  type="tel"
+                  id="registerPhone"
+                  name="sb-phone"
+                  placeholder="Nhập số điện thoại"
+                  pattern="0[0-9]{9}"
+                  maxlength="10"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  required
+                />
+                <small class="field-note"
+                  >Số điện thoại Việt Nam 10 số, bắt đầu bằng 0. Mỗi số chỉ đăng
+                  ký 1 tài khoản</small
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="registerPassword">Mật khẩu *</label>
+                <input
+                  type="password"
+                  id="registerPassword"
+                  name="sb-password"
+                  placeholder="Tối thiểu 6 ký tự"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="registerConfirmPassword">Xác nhận mật khẩu *</label>
+                <input
+                  type="password"
+                  id="registerConfirmPassword"
+                  name="sb-password-confirm"
+                  placeholder="Nhập lại mật khẩu"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+
+              <div class="form-options">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="agreeTerms" required />
+                  <span
+                    >Tôi đồng ý với
+                    <a href="#" class="link-text">Điều khoản dịch vụ</a></span
+                  >
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large btn-full">
+                Đăng ký
+              </button>
+
+              <div class="auth-divider">
+                <span>hoặc</span>
+              </div>
+
+              <div class="auth-footer">
+                <p>
+                  Đã có tài khoản?
+                  <a href="login.html" class="link-primary">Đăng nhập ngay</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 SportBooking</p>
+    </footer>
+
+    <script src="auth.js"></script>
+  </body>
+</html>

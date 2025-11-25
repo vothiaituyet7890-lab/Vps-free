@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Phân công ca</title>
+  <link rel="stylesheet" href="/DOANWEB/styles.css" />
+  <link rel="stylesheet" href="/DOANWEB/admin-styles.css" />
+</head>
+<body class="admin-body">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>🏟️ SportBooking</h2>
+      <p class="admin-badge">ADMIN PANEL</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/DOANWEB/admin.html#dashboard" class="nav-item">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Tổng quan</span>
+      </a>
+      <div class="nav-group">
+        <div class="nav-group-title">Quản lý</div>
+        <a href="/DOANWEB/admin.html#employees" class="nav-item">
+          <span class="nav-icon">👥</span>
+          <span class="nav-text">Nhân viên</span>
+        </a>
+        <a href="/DOANWEB/admin-ca-truc.html" class="nav-item">
+          <span class="nav-icon">🕒</span>
+          <span class="nav-text">Quản lý ca & duyệt nghỉ</span>
+        </a>
+        <a href="/DOANWEB/admin-phan-cong.html" class="nav-item active">
+          <span class="nav-icon">📋</span>
+          <span class="nav-text">Phân công ca</span>
+        </a>
+        <a href="/DOANWEB/admin.html#courts" class="nav-item">
+          <span class="nav-icon">🏟️</span>
+          <span class="nav-text">Sân thể thao</span>
+        </a>
+        <a href="/DOANWEB/admin.html#court-types" class="nav-item">
+          <span class="nav-icon">⚽</span>
+          <span class="nav-text">Loại sân & Giá</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Đơn & Khách</div>
+        <a href="/DOANWEB/admin.html#bookings" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-text">Đơn đặt sân</span>
+        </a>
+        <a href="/DOANWEB/admin.html#users" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Người dùng</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Báo cáo</div>
+        <a href="/DOANWEB/admin.html#revenue" class="nav-item">
+          <span class="nav-icon">💰</span>
+          <span class="nav-text">Doanh thu</span>
+        </a>
+        <a href="/DOANWEB/admin.html#reports" class="nav-item">
+          <span class="nav-icon">📈</span>
+          <span class="nav-text">Báo cáo</span>
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <section class="admin-section active">
+      <div class="section-header">
+        <h1>🕒 Phân công ca cho nhân viên</h1>
+        <a href="/DOANWEB/admin.html" class="btn">← Quay lại Admin</a>
+      </div>
+      <div class="admin-card">
+        <div class="card-header">
+          <label>Ngày:</label>
+          <input id="assignDate" type="date" class="form-control" />
+          <button class="btn" id="btnReloadAssign">Tải danh sách</button>
+          <span id="assignHint" style="color:#64748b"></span>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-header"><h3>➕ Tạo phân công</h3></div>
+        <div class="card-body" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <select id="selNhanVien" class="form-control"><option value="">Chọn nhân viên</option></select>
+          <select id="selCa" class="form-control"><option value="">Chọn ca</option></select>
+          <select id="selSan" class="form-control"><option value="">Chọn sân (tuỳ chọn)</option></select>
+          <button class="btn btn-primary" id="btnCreateAssign">Lưu phân công</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-header"><h3>📋 Danh sách phân công trong ngày</h3></div>
+        <div class="table-responsive">
+      <table class="admin-table" id="assignTable">
+        <thead><tr>
+          <th>Mã ca</th><th>Tên ca</th><th>Giờ</th><th>Nhân viên</th><th>Sân</th><th>Hành động</th>
+        </tr></thead>
+        <tbody><tr><td colspan="6">Đang tải...</td></tr></tbody>
+      </table>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-header"><h3>📝 Yêu cầu hủy ca</h3></div>
+        <div class="table-responsive">
+      <table class="admin-table" id="cancelReqTable">
+        <thead><tr>
+          <th>NV</th><th>Ngày</th><th>Ca</th><th>Lý do</th><th>Trạng thái</th><th>Hành động</th>
+        </tr></thead>
+        <tbody><tr><td colspan="6">Đang tải...</td></tr></tbody>
+      </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/DOANWEB/auth.js"></script>
+  <script src="/DOANWEB/admin-assign.js"></script>
+</body>
+</html>

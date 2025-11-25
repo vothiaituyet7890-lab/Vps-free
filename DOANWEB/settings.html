@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cài đặt tài khoản - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/DOANWEB/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/DOANWEB/index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="/DOANWEB/index.html">Trang chủ</a>
+          <a href="/DOANWEB/gioithieu.html">Giới thiệu</a>
+          <a href="/DOANWEB/timkiem.html">Tìm kiếm</a>
+          <a href="/DOANWEB/danh-sach-san.html">Danh sách sân</a>
+          <a href="/DOANWEB/lienhe.html">Liên hệ</a>
+          <a href="/DOANWEB/login.html" class="btn btn-primary btn-sm" id="loginBtn">Đăng nhập</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="settings-container">
+          <!-- Breadcrumb -->
+          <div class="breadcrumb">
+            <a href="/DOANWEB/index.html">🏠 Trang chủ</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">Cài đặt tài khoản</span>
+          </div>
+
+          <div class="settings-header">
+            <div class="settings-icon">⚙️</div>
+            <h1>Cài đặt tài khoản</h1>
+            <p>Quản lý và cập nhật thông tin cá nhân của bạn</p>
+          </div>
+
+          <!-- Profile Information Card -->
+          <div class="card settings-card">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="card-icon">👤</div>
+                <div>
+                  <h3>Thông tin cá nhân</h3>
+                  <p class="card-subtitle">Cập nhật thông tin cơ bản của bạn</p>
+                </div>
+              </div>
+            </div>
+            <form id="profileForm" class="settings-form">
+              <div class="form-field">
+                <label for="profileName">
+                  <span class="label-icon">✏️</span>
+                  Họ tên *
+                </label>
+                <input 
+                  type="text" 
+                  id="profileName" 
+                  placeholder="Nhập họ tên của bạn" 
+                  pattern="^[a-zA-ZÀ-ỹ\s]+$"
+                  title="Họ tên chỉ được chứa chữ cái và khoảng trắng"
+                  required 
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="profileEmail">
+                  <span class="label-icon">📧</span>
+                  Email *
+                </label>
+                <div class="input-with-badge">
+                  <input 
+                    type="email" 
+                    id="profileEmail" 
+                    placeholder="Nhập email" 
+                    required 
+                    disabled
+                    class="disabled-input"
+                  />
+                  <span class="input-badge">🔒 Không thể thay đổi</span>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="profilePhone">
+                  <span class="label-icon">📱</span>
+                  Số điện thoại *
+                </label>
+                <input 
+                  type="tel" 
+                  id="profilePhone" 
+                  placeholder="Nhập số điện thoại (VD: 0912345678)" 
+                  pattern="0[0-9]{9}"
+                  maxlength="10"
+                  inputmode="numeric"
+                  required 
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="profileJoinDate">
+                  <span class="label-icon">📅</span>
+                  Ngày tham gia
+                </label>
+                <input 
+                  type="text" 
+                  id="profileJoinDate" 
+                  disabled
+                  class="disabled-input"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                💾 Lưu thay đổi
+              </button>
+            </form>
+          </div>
+
+          <!-- Change Password Card -->
+          <div class="card settings-card">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="card-icon">🔒</div>
+                <div>
+                  <h3>Đổi mật khẩu</h3>
+                  <p class="card-subtitle">Cập nhật mật khẩu để bảo mật tài khoản</p>
+                </div>
+              </div>
+            </div>
+            <form id="passwordForm" class="settings-form">
+              <div class="form-field">
+                <label for="currentPassword">
+                  <span class="label-icon">🔑</span>
+                  Mật khẩu hiện tại *
+                </label>
+                <input 
+                  type="password" 
+                  id="currentPassword" 
+                  placeholder="••••••••" 
+                  required 
+                />
+              </div>
+
+              <div class="password-requirements">
+                <p class="requirements-title">Yêu cầu mật khẩu mới:</p>
+                <ul class="requirements-list">
+                  <li>✓ Tối thiểu 6 ký tự</li>
+                  <li>✓ Nên kết hợp chữ, số và ký tự đặc biệt</li>
+                </ul>
+              </div>
+
+              <div class="form-field">
+                <label for="newPassword">
+                  <span class="label-icon">🆕</span>
+                  Mật khẩu mới *
+                </label>
+                <input 
+                  type="password" 
+                  id="newPassword" 
+                  placeholder="••••••••" 
+                  minlength="6"
+                  required 
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="confirmNewPassword">
+                  <span class="label-icon">✅</span>
+                  Xác nhận mật khẩu mới *
+                </label>
+                <input 
+                  type="password" 
+                  id="confirmNewPassword" 
+                  placeholder="••••••••" 
+                  minlength="6"
+                  required 
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                🔑 Đổi mật khẩu
+              </button>
+            </form>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="card danger-zone">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="card-icon danger-icon">⚠️</div>
+                <div>
+                  <h3>Vùng nguy hiểm</h3>
+                  <p class="card-subtitle">Các hành động không thể hoàn tác</p>
+                </div>
+              </div>
+            </div>
+            <div class="danger-content">
+              <div class="danger-warning">
+                <div class="warning-icon">🚨</div>
+                <div class="warning-text">
+                  <strong>Cảnh báo:</strong> Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn bao gồm:
+                  <ul>
+                    <li>Thông tin cá nhân</li>
+                    <li>Lịch sử đặt sân</li>
+                    <li>Các giao dịch thanh toán</li>
+                  </ul>
+                  <p class="warning-note">⚠️ Hành động này không thể hoàn tác!</p>
+                </div>
+              </div>
+              <button class="btn btn-danger" onclick="deleteAccount()">
+                <span class="btn-icon">🗑️</span>
+                Xóa tài khoản vĩnh viễn
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 SportBooking</p>
+    </footer>
+
+    <script src="/DOANWEB/auth.js"></script>
+    <script src="/DOANWEB/js/common.js?v=1"></script>
+    <script src="/DOANWEB/settings.js"></script>
+  </body>
+</html>

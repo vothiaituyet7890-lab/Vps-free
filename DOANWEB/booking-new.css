@@ -1,0 +1,968 @@
+/* ===== COURTS PAGE - MODERN DESIGN ===== */
+
+.courts-page {
+    background: #f8fafc;
+    min-height: 100vh;
+    padding: 3rem 0;
+}
+
+.container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Page Header */
+.page-header-modern {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header-content h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header-content p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Filter Bar */
+.filter-bar-modern {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filter-search {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 0 1rem;
+}
+
+.filter-search svg {
+    color: #94a3b8;
+}
+
+.filter-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.875rem 0;
+    font-size: 1rem;
+    outline: none;
+}
+
+.filter-select {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.filter-count {
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Courts Grid */
+.courts-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.court-card-modern {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.court-card-modern:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.court-card-modern.expanded {
+    grid-column: 1 / -1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.court-card-header-modern {
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.court-icon-large {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.court-card-header-modern h3 {
+    color: white;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
+}
+
+.court-type-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+}
+
+.court-status-badge-modern {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.court-status-badge-modern.trong {
+    background: #10b981;
+    color: white;
+}
+
+.court-status-badge-modern.dang_thue {
+    background: #f59e0b;
+    color: white;
+}
+
+.court-status-badge-modern.bao_tri {
+    background: #ef4444;
+    color: white;
+}
+
+.court-card-body-modern {
+    padding: 1.5rem;
+}
+
+.court-info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.court-info-row:last-child {
+    border-bottom: none;
+}
+
+.court-info-icon {
+    width: 36px;
+    height: 36px;
+    background: #f8fafc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.court-info-text {
+    flex: 1;
+}
+
+.court-info-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.125rem;
+}
+
+.court-info-value {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+.court-price-highlight {
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+.court-card-footer-modern {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.btn-book-court {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-book-court:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-book-court:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Inline Booking Sections */
+.inline-booking-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.inline-label {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.inline-date-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.inline-date-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.inline-time-slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.inline-time-slot {
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.inline-time-slot.available {
+    border-color: #10b981;
+    color: #059669;
+}
+
+.inline-time-slot.available:hover {
+    background: #ecfdf5;
+    transform: scale(1.05);
+}
+
+.inline-time-slot.booked {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #dc2626;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.inline-time-slot.selected {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.select-date-first,
+.loading-slots {
+    text-align: center;
+    padding: 1rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    grid-column: 1 / -1;
+}
+
+.inline-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.inline-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Booking Form Expanded */
+.booking-form-expanded {
+    background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
+    border-top: 3px solid #667eea;
+    animation: slideDown 0.3s ease;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.05);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.booking-form-content {
+    padding: 2rem;
+}
+
+.booking-form-content h4 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.75rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+.time-slot-btn {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-slot-btn.available {
+    border-color: #10b981;
+    color: #059669;
+}
+
+.time-slot-btn.available:hover {
+    background: #ecfdf5;
+    transform: scale(1.05);
+}
+
+.time-slot-btn.booked {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #dc2626;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.time-slot-btn.selected {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.empty-msg,
+.loading-slots {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #94a3b8;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.btn-submit {
+    flex: 2;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Loading State */
+.loading-state-modern {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.loading-spinner-modern {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state-modern {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #94a3b8;
+}
+
+.empty-state-modern .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* ===== BOOKING MODAL - MODERN 2-COLUMN LAYOUT ===== */
+
+.modal-booking-new {
+    max-width: 1400px;
+    width: 95%;
+    max-height: 95vh;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.booking-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    height: 90vh;
+    overflow: hidden;
+}
+
+/* ===== LEFT SIDE: SELECTION ===== */
+.booking-left {
+    overflow-y: auto;
+    padding: 2rem;
+    background: #f8fafc;
+}
+
+.court-info-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.court-info-header .court-type-icon-display {
+    font-size: 4rem;
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.court-info-header .court-type-info h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.75rem;
+}
+
+.court-info-header .court-type-info p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ===== BOOKING STEPS ===== */
+.booking-step {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.step-number {
+    background: var(--primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.step-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #1e293b;
+}
+
+/* ===== DATE GRID ===== */
+.date-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+}
+
+.date-item {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.date-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.date-item.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.date-day {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+
+.date-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.25rem 0;
+}
+
+.date-month {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* ===== SCHEDULE CONTAINER ===== */
+.schedule-container {
+    min-height: 300px;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.court-time-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.court-group {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.court-group-header {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+}
+
+.time-slot-btn {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.75rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.time-slot-btn:hover {
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.time-slot-btn.available {
+    border-color: #10b981;
+    color: #059669;
+}
+
+.time-slot-btn.available:hover {
+    background: #ecfdf5;
+}
+
+.time-slot-btn.booked {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #dc2626;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.time-slot-btn.selected {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.time-slot-btn .slot-time {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.time-slot-btn .slot-status {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+/* ===== RIGHT SIDE: SUMMARY & FORM ===== */
+.booking-right {
+    background: white;
+    border-left: 1px solid #e2e8f0;
+    overflow-y: auto;
+}
+
+.booking-summary-sticky {
+    padding: 2rem;
+}
+
+.booking-summary-sticky h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    color: #1e293b;
+}
+
+/* ===== EMPTY STATE ===== */
+.summary-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #94a3b8;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.summary-empty p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.summary-empty small {
+    font-size: 0.9rem;
+}
+
+/* ===== SUMMARY SELECTED ===== */
+.summary-selected {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.summary-item:last-of-type {
+    border-bottom: none;
+}
+
+.summary-icon {
+    font-size: 1.5rem;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-info {
+    flex: 1;
+}
+
+.summary-info label {
+    display: block;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.summary-info strong {
+    display: block;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.summary-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.summary-price span {
+    font-size: 1rem;
+    color: #64748b;
+}
+
+.summary-price strong {
+    font-size: 1.75rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ===== FORM SECTION ===== */
+.form-section {
+    margin: 1.5rem 0;
+}
+
+.form-section h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.btn-submit-booking {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-booking:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit-booking:active {
+    transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .booking-container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .booking-right {
+        border-left: none;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .date-grid-modern {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-left,
+    .booking-summary-sticky {
+        padding: 1rem;
+    }
+
+    .court-info-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .time-slots-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thanh toán - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .payment-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      .payment-methods {
+        display: grid;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+      .payment-method {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+      }
+      .payment-method:hover {
+        border-color: #3b82f6;
+        background-color: #f8fafc;
+      }
+      .payment-method.selected {
+        border-color: #3b82f6;
+        background-color: #eff6ff;
+      }
+      .payment-method input[type="radio"] {
+        margin-right: 1rem;
+      }
+      .payment-method-details {
+        margin-left: 1rem;
+      }
+      .payment-method-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      .payment-method-desc {
+        color: #6b7280;
+        font-size: 0.875rem;
+      }
+      .btn-pay {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+      }
+      .booking-details {
+        background-color: #f9fafb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .booking-details h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+      .detail-row.total {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+        font-weight: 600;
+        font-size: 1.125rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="gioithieu.html">Giới thiệu</a>
+          <a href="danh-sach-san.html" class="active">Danh sách sân</a>
+          <a href="lienhe.html">Liên hệ</a>
+          <a href="#" class="btn btn-primary btn-sm" id="userMenu">Tài khoản</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container payment-container">
+        <div class="booking-details">
+          <h3>Thông tin đặt sân</h3>
+          <div class="detail-row">
+            <span>Sân:</span>
+            <span id="booking-court">Sân 1</span>
+          </div>
+          <div class="detail-row">
+            <span>Ngày:</span>
+            <span id="booking-date">Thứ 2, 20/10/2023</span>
+          </div>
+          <div class="detail-row">
+            <span>Khung giờ:</span>
+            <span id="booking-time">18:00 - 20:00</span>
+          </div>
+          <div class="detail-row">
+            <span>Đơn giá:</span>
+            <span id="booking-price">200,000 VNĐ</span>
+          </div>
+          <div class="detail-row total">
+            <span>Tổng cộng:</span>
+            <span id="booking-total">200,000 VNĐ</span>
+          </div>
+        </div>
+
+        <h2>Chọn phương thức thanh toán</h2>
+        <p>Vui lòng chọn hình thức thanh toán phù hợp với bạn.</p>
+
+        <form id="paymentForm" class="payment-methods">
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="momo" checked />
+            <div class="payment-method-icon">
+              <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Icon.png" alt="Momo" style="width: 40px; height: 40px; object-fit: contain;">
+            </div>
+            <div class="payment-method-details">
+              <div class="payment-method-title">Ví điện tử Momo</div>
+              <div class="payment-method-desc">Thanh toán qua ứng dụng Momo</div>
+            </div>
+          </label>
+
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="bank" />
+            <div class="payment-method-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Bank" style="width: 40px; height: 40px; object-fit: contain;">
+            </div>
+            <div class="payment-method-details">
+              <div class="payment-method-title">Chuyển khoản ngân hàng</div>
+              <div class="payment-method-desc">Chuyển khoản qua ngân hàng</div>
+            </div>
+          </label>
+
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="cash" />
+            <div class="payment-method-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2731/2731692.png" alt="Cash" style="width: 40px; height: 40px; object-fit: contain;">
+            </div>
+            <div class="payment-method-details">
+              <div class="payment-method-title">Thanh toán trực tiếp</div>
+              <div class="payment-method-desc">Thanh toán khi nhận sân</div>
+            </div>
+          </label>
+        </form>
+
+        <button id="btnPay" class="btn btn-primary btn-pay">
+          Thanh toán
+        </button>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2023 SportBooking. Tất cả các quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="thanh-toan.js"></script>
+  </body>
+</html>

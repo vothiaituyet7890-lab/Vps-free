@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=/DOANWEB/danh-sach-san.html">
+    <title>Đang chuyển hướng...</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .redirect-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .spinner {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Redirect immediately
+        window.location.href = '/DOANWEB/danh-sach-san.html';
+    </script>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="spinner">⏳</div>
+        <h2>Đang chuyển hướng...</h2>
+        <p>Trang đặt sân đã được chuyển sang <strong>Danh sách sân</strong></p>
+        <p>Nếu không tự động chuyển, <a href="/DOANWEB/danh-sach-san.html">click vào đây</a></p>
+    </div>
+</body>
+</html>

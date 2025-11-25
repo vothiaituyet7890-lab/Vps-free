@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bảng điều khiển Nhân viên - SportBooking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/DOANWEB/styles.css" />
+    <style>
+      .staff-header { display:flex; align-items:center; gap:12px; }
+      .staff-badge { padding:4px 8px; border-radius:999px; background:#eef2ff; color:#4338ca; font-weight:600; font-size:12px; }
+      .toolbar { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+      .status-chip { padding:6px 10px; border-radius:999px; background:#f1f5f9; cursor:pointer; }
+      .status-chip.active { background:#e0e7ff; color:#3730a3; font-weight:600; }
+      .table { width:100%; border-collapse:collapse; }
+      .table th, .table td { padding:10px 12px; border-bottom:1px solid #eee; text-align:left; }
+      .right { text-align:right; }
+      .actions { display:flex; gap:8px; }
+      .tag { padding:2px 8px; border-radius:999px; font-size:12px; }
+      .tag.pending { background:#fff7ed; color:#9a3412; }
+      .tag.approved { background:#ecfdf5; color:#065f46; }
+      .tag.rejected { background:#fef2f2; color:#991b1b; }
+      .tag.cancelled { background:#f1f5f9; color:#334155; }
+      /* Staff top navigation */
+      .staff-top-nav { display:flex; gap:10px; align-items:center; }
+      .top-item { appearance:none; border:1px solid #e5e7eb; background:#ffffff; color:#111827; font:inherit; padding:8px 12px; border-radius:10px; cursor:pointer; transition:all .2s ease; display:flex; gap:8px; align-items:center; }
+      .top-item:hover { background:#f8fafc; }
+      .top-item.active { background:#111827; color:#ffffff; border-color:#111827; box-shadow:0 6px 14px rgba(17,24,39,.18); }
+      .top-item .icon { font-size:16px; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner" style="gap:16px;">
+        <a href="/DOANWEB/index.html" class="logo">SportBooking</a>
+        <nav id="staffTopNav" class="staff-top-nav">
+          <button class="top-item" data-tab="tab-bookings"><span class="icon">📋</span><span>Đặt sân</span></button>
+          <button class="top-item" data-tab="tab-payments"><span class="icon">💵</span><span>Thanh toán</span></button>
+          <button class="top-item" data-tab="tab-customers"><span class="icon">👥</span><span>Khách hàng</span></button>
+          <button class="top-item" data-tab="tab-courts"><span class="icon">🏟️</span><span>Sân</span></button>
+          <button class="top-item" data-tab="tab-shifts"><span class="icon">🕒</span><span>Ca trực</span></button>
+          <button class="top-item" data-tab="tab-reports"><span class="icon">📊</span><span>Báo cáo</span></button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="staff-header">
+          <h1>🎧 Bảng điều khiển Nhân viên</h1>
+          <span class="staff-badge">Staff</span>
+        </div>
+
+        
+
+        <section id="tab-bookings" class="tab-section">
+          <div class="toolbar">
+            <button class="status-chip active" data-filter="all">Tất cả</button>
+            <button class="status-chip" data-filter="pending">Chờ duyệt</button>
+            <button class="status-chip" data-filter="approved">Đã duyệt</button>
+            <button class="status-chip" data-filter="rejected">Từ chối</button>
+            <button class="status-chip" data-filter="cancelled">Đã hủy</button>
+          </div>
+          <div class="card">
+            <table class="table" id="staffBookingsTable">
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Sân</th>
+                  <th>Ngày</th>
+                  <th>Khung giờ</th>
+                  <th>Trạng thái</th>
+                  <th class="right">Tổng tiền</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="8">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-payments" class="tab-section" style="display:none">
+          <div class="card">
+            <table class="table" id="staffPaymentsTable">
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Tổng tiền</th>
+                  <th>Tình trạng</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="5">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-customers" class="tab-section" style="display:none">
+          <div class="card">
+            <table class="table" id="staffCustomersTable">
+              <thead>
+                <tr>
+                  <th>Khách hàng</th>
+                  <th>SĐT</th>
+                  <th>Số đơn</th>
+                  <th>Tổng chi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="4">Đang tải...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-courts" class="tab-section" style="display:none">
+          <div class="card">
+            <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+              <input id="courtNameInput" class="form-control" placeholder="Tên sân (ví dụ: Sân 1)" />
+              <select id="courtStatusInput" class="form-control">
+                <option value="active">Đang hoạt động</option>
+                <option value="maintenance">Bảo trì</option>
+                <option value="occupied">Đang sử dụng</option>
+              </select>
+              <button class="btn btn-primary" onclick="saveCourtStatus()">Lưu trạng thái</button>
+            </div>
+            <table class="table" id="staffCourtsTable">
+              <thead>
+                <tr>
+                  <th>Tên sân</th>
+                  <th>Trạng thái</th>
+                  <th>Cập nhật</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="3">Chưa có dữ liệu</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-shifts" class="tab-section" style="display:none">
+          <div class="card">
+            <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+              <input id="shiftDate" type="date" class="form-control" />
+              <input id="shiftName" class="form-control" placeholder="Ca (sáng/chiều/tối)" />
+              <button class="btn btn-primary" onclick="addShift()">Thêm ca</button>
+            </div>
+            <table class="table" id="staffShiftsTable">
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Ca</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="3">Chưa có ca trực</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-reports" class="tab-section" style="display:none">
+          <div class="card">
+            <div id="reportSummary">Đang tổng hợp...</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 SportBooking</p>
+    </footer>
+
+    
+
+    <script src="/DOANWEB/auth.js"></script>
+    <script src="/DOANWEB/js/common.js?v=1"></script>
+    <script src="/DOANWEB/staff.js"></script>
+  </body>
+</html>

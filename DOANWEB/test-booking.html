@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            border: 2px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .form-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        .form-section.show {
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏟️ Test Đặt Sân</h1>
+    
+    <div class="card">
+        <h2>Sân Bóng Đá 1</h2>
+        <p>Giá: 300,000đ/giờ</p>
+        <button onclick="toggleForm()">Đặt sân ngay</button>
+        
+        <div id="bookingForm" class="form-section">
+            <h3>Chọn ngày và giờ</h3>
+            <input type="date" id="bookingDate" min="2025-10-26">
+            <select id="timeSlot">
+                <option value="">-- Chọn khung giờ --</option>
+                <option value="06:00-08:00">06:00 - 08:00</option>
+                <option value="08:00-10:00">08:00 - 10:00</option>
+                <option value="10:00-12:00">10:00 - 12:00</option>
+                <option value="14:00-16:00">14:00 - 16:00</option>
+                <option value="16:00-18:00">16:00 - 18:00</option>
+                <option value="18:00-20:00">18:00 - 20:00</option>
+            </select>
+            
+            <h3>Thông tin khách hàng</h3>
+            <input type="text" id="customerName" placeholder="Họ và tên">
+            <input type="tel" id="customerPhone" placeholder="Số điện thoại">
+            
+            <button onclick="submitBooking()">Xác nhận đặt sân</button>
+        </div>
+    </div>
+    
+    <script>
+        function toggleForm() {
+            const form = document.getElementById('bookingForm');
+            form.classList.toggle('show');
+            console.log('Form toggled, display:', form.classList.contains('show'));
+        }
+        
+        function submitBooking() {
+            const date = document.getElementById('bookingDate').value;
+            const time = document.getElementById('timeSlot').value;
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            
+            if (!date || !time || !name || !phone) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+            
+            alert('Đặt sân thành công!\nNgày: ' + date + '\nGiờ: ' + time);
+            
+            // Reset form
+            document.getElementById('bookingForm').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

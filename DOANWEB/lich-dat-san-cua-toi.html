@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Đơn đặt sân của tôi - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .bookings-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      .page-header {
+        margin-bottom: 32px;
+      }
+      .page-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0 0 12px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .page-header p {
+        font-size: 1.1rem;
+        color: var(--muted);
+        margin: 0;
+      }
+      .booking-card {
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.12);
+        border: 2px solid rgba(139, 92, 246, 0.1);
+        transition: all 0.3s ease;
+      }
+      .booking-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+        border-color: rgba(139, 92, 246, 0.3);
+      }
+      .booking-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+      }
+      .booking-id {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--text);
+        font-family: monospace;
+      }
+      .booking-status {
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .status-pending {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        color: #92400e;
+        box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+      }
+      .status-approved {
+        background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+        color: #065f46;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      }
+      .status-rejected {
+        background: linear-gradient(135deg, #fee2e2, #fecaca);
+        color: #b91c1c;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+      }
+      .status-cancelled {
+        background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+        color: #4b5563;
+        box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+      }
+      .booking-card.cancelled {
+        background: #f3f4f6;
+        border-color: #e5e7eb;
+        box-shadow: none;
+        opacity: 0.85;
+      }
+      .booking-card.cancelled .detail-value,
+      .booking-card.cancelled .booking-id {
+        color: #6b7280;
+      }
+      .booking-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        margin-bottom: 24px;
+        background: rgba(139, 92, 246, 0.03);
+        padding: 24px;
+        border-radius: 16px;
+      }
+      .detail-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .detail-group h4 {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .detail-value {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--text);
+      }
+      .booking-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding-top: 20px;
+        border-top: 2px solid rgba(139, 92, 246, 0.1);
+      }
+      .booking-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .booking-actions .btn {
+        min-width: 140px;
+      }
+      .no-bookings {
+        text-align: center;
+        padding: 4rem 1rem;
+        color: #6b7280;
+      }
+      .no-bookings-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="gioithieu.html">Giới thiệu</a>
+          <a href="timkiem.html">Tìm kiếm</a>
+          <a href="danh-sach-san.html">Danh sách sân</a>
+          <a href="lienhe.html">Liên hệ</a>
+          <a href="#" class="btn btn-primary btn-sm" id="userMenu">Tài khoản</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="bookings-container">
+        <div class="page-header">
+          <h1>📋 Chi tiết sân đã đặt</h1>
+          <p>Xem và quản lý các đơn đặt sân của bạn</p>
+        </div>
+        
+        <div id="bookingsList">
+          <!-- Danh sách đơn đặt sân sẽ được hiển thị ở đây -->
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2023 SportBooking. Tất cả các quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+      // Hàm định dạng ngày tháng
+      function formatDate(dateString) {
+        const options = { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        };
+        return new Date(dateString).toLocaleDateString('vi-VN', options);
+      }
+
+      // Hàm hiển thị trạng thái đơn hàng
+      function getStatusBadge(status) {
+        const normalized = (status || '').toLowerCase() === 'canceled' ? 'cancelled' : (status || '').toLowerCase();
+        const statusConfig = {
+          'pending': { text: '⏳ Đang duyệt', class: 'status-pending' },
+          'approved': { text: '✅ Đã duyệt', class: 'status-approved' },
+          'rejected': { text: '❌ Đã từ chối', class: 'status-rejected' },
+          'cancelled': { text: '🚫 Đã hủy', class: 'status-cancelled' }
+        };
+        
+        const config = statusConfig[normalized] || { text: status, class: 'status-pending' };
+        return `<span class="booking-status ${config.class}">${config.text}</span>`;
+      }
+
+      // Hàm hiển thị danh sách đơn đặt sân
+      function displayBookings(bookings) {
+        const bookingsList = document.getElementById('bookingsList');
+        
+        // Hiển thị cả các đơn đã hủy để đối chiếu với admin
+        bookings = bookings || [];
+
+        if (!bookings || bookings.length === 0) {
+          bookingsList.innerHTML = `
+            <div class="no-bookings">
+              <div class="no-bookings-icon">📋</div>
+              <h3>Chưa có đơn đặt sân nào</h3>
+              <p>Bạn chưa có đơn đặt sân nào. Hãy đặt sân ngay hôm nay!</p>
+              <a href="datsan.html" class="btn btn-primary mt-4">Đặt sân ngay</a>
+            </div>
+          `;
+          return;
+        }
+
+        // Sắp xếp theo thời gian tạo mới nhất
+        bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        let html = '';
+        
+        bookings.forEach(booking => {
+          const bookingDate = new Date(booking.date);
+          const formattedDate = bookingDate.toLocaleDateString('vi-VN', { 
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          const raw = (booking.statusRaw || '').toString().toLowerCase();
+          const base = (booking.status || '').toString().toLowerCase();
+          const stripMarks = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\s_]+/g, '');
+          const normRaw = stripMarks(raw);
+          const normBase = stripMarks(base);
+          const isCancelled = normBase === 'cancelled' || normBase === 'canceled' || normBase.includes('cancel') || normRaw.includes('huy') || normRaw.includes('cancel');
+          const displayStatus = isCancelled ? 'cancelled' : (base || 'pending');
+          html += `
+            <div class="booking-card ${isCancelled ? 'cancelled' : ''}" id="booking-card-${booking.id}" data-status="${displayStatus}" data-statusraw="${(booking.statusRaw || '').replace(/"/g,'&quot;')}">
+              <div class="booking-header">
+                <div class="booking-id">Mã đơn: ${booking.id}</div>
+                ${getStatusBadge(displayStatus)}
+              </div>
+              
+              <div class="booking-details">
+                <div class="detail-group">
+                  <h4>Sân đặt</h4>
+                  <div class="detail-value">Sân ${booking.court}</div>
+                </div>
+                
+                <div class="detail-group">
+                  <h4>Ngày đá</h4>
+                  <div class="detail-value">${formattedDate}</div>
+                </div>
+                
+                <div class="detail-group">
+                  <h4>Khung giờ</h4>
+                  <div class="detail-value">${booking.time}</div>
+                </div>
+                
+                <div class="detail-group">
+                  <h4>Thanh toán</h4>
+                  <div class="detail-value">${getPaymentMethod(booking.paymentMethod)}</div>
+                </div>
+              </div>
+              
+              <div class="booking-footer">
+                <div class="detail-group">
+                  <h4>Tổng tiền</h4>
+                  <div class="detail-value" style="font-size: 1.25rem; font-weight: 700; color: #1f2937;">
+                    ${(booking.amount || 0).toLocaleString('vi-VN')} VNĐ
+                  </div>
+                </div>
+                
+                <div class="booking-actions">
+                  ${(!isCancelled && (displayStatus === 'approved' || displayStatus === 'pending')) ? `
+                    <button class="btn btn-danger" onclick="cancelBooking('${booking.id}')">
+                      ❌ Hủy đặt sân
+                    </button>
+                  ` : ''}
+                  <button class="btn btn-primary" onclick="viewBookingDetails('${booking.id}')">
+                    👁️ Xem chi tiết
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        
+        bookingsList.innerHTML = html;
+      }
+      
+      // Hàm lấy tên phương thức thanh toán
+      function getPaymentMethod(method) {
+        const methods = {
+          'momo': 'Ví điện tử Momo',
+          'bank': 'Chuyển khoản ngân hàng',
+          'cash': 'Thanh toán trực tiếp'
+        };
+        return methods[method] || method || 'Chưa xác định';
+      }
+      
+      // Hàm hủy đơn đặt sân
+      function cancelBooking(bookingId) {
+        if (!confirm('Bạn có chắc chắn muốn hủy đơn đặt sân này?')) {
+          return;
+        }
+        fetch('/DOANWEB/api/cancel-booking.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bookingId: Number(bookingId) })
+        })
+        .then(r => r.json())
+        .then(resp => {
+          if (resp && resp.success) {
+            showToast('Đã hủy đơn đặt sân', resp.message || 'Hủy thành công', 'success');
+            // Optimistic UI: đánh dấu thẻ là đã hủy thay vì xóa khỏi DOM
+            const card = document.getElementById('booking-card-' + bookingId);
+            if (card) {
+              // Thêm lớp cancelled để tô xám
+              card.classList.add('cancelled');
+
+              // Cập nhật badge trạng thái
+              const header = card.querySelector('.booking-header');
+              if (header) {
+                const oldBadge = header.querySelector('.booking-status');
+                const newBadge = document.createElement('span');
+                newBadge.className = 'booking-status status-cancelled';
+                newBadge.textContent = '🚫 Đã hủy';
+                if (oldBadge) {
+                  oldBadge.replaceWith(newBadge);
+                } else {
+                  header.appendChild(newBadge);
+                }
+              }
+
+              // Ẩn nút hủy nếu còn xuất hiện
+              const cancelBtn = card.querySelector('.btn.btn-danger');
+              if (cancelBtn && cancelBtn.parentElement) {
+                cancelBtn.parentElement.removeChild(cancelBtn);
+              }
+            }
+            // Đồng bộ lại danh sách từ server ở hậu trường
+            setTimeout(() => loadUserBookings(), 150);
+          } else {
+            const msg = (resp && resp.message) ? String(resp.message).toLowerCase() : '';
+            showToast('Không thể hủy', (resp && resp.message) || 'Vui lòng thử lại', 'error');
+            // Nếu backend báo đã hủy rồi -> cập nhật UI thành đã hủy
+            if (msg.includes('da huy') || msg.includes('đã hủy') || msg.includes('huy')) {
+              const card = document.getElementById('booking-card-' + bookingId);
+              if (card) {
+                card.classList.add('cancelled');
+                // cập nhật badge
+                const header = card.querySelector('.booking-header');
+                if (header) {
+                  const oldBadge = header.querySelector('.booking-status');
+                  const newBadge = document.createElement('span');
+                  newBadge.className = 'booking-status status-cancelled';
+                  newBadge.textContent = '🚫 Đã hủy';
+                  if (oldBadge) oldBadge.replaceWith(newBadge); else header.appendChild(newBadge);
+                }
+                const cancelBtn = card.querySelector('.btn.btn-danger');
+                if (cancelBtn && cancelBtn.parentElement) cancelBtn.parentElement.removeChild(cancelBtn);
+              }
+            }
+          }
+        })
+        .catch(() => showToast('Lỗi', 'Không thể kết nối máy chủ', 'error'));
+      }
+      
+      // Hàm xem chi tiết đơn đặt sân
+      function viewBookingDetails(bookingId) {
+        window.location.href = `chi-tiet-dat-san.html?id=${bookingId}`;
+      }
+      
+      // Hàm tải danh sách đơn đặt sân của người dùng
+      function loadUserBookings() {
+        const currentUser = getCurrentUser();
+        if (!currentUser) {
+          window.location.href = '/DOANWEB/login.html?returnUrl=/DOANWEB/lich-dat-san-cua-toi.html';
+          return;
+        }
+        
+        // Gọi API để lấy danh sách đơn đặt sân theo tài khoản hiện tại
+        fetch('/DOANWEB/api/my-bookings.php?_=' + Date.now(), { cache: 'no-store' })
+          .then(r => r.json())
+          .then(resp => {
+            if (resp && resp.success) {
+              displayBookings(resp.bookings || []);
+            } else {
+              displayBookings([]);
+            }
+          })
+          .catch(() => displayBookings([]));
+      }
+      
+      // Khởi tạo trang
+      document.addEventListener('DOMContentLoaded', function() {
+        // Kiểm tra đăng nhập
+        checkLoginStatus();
+        
+        // Tải danh sách đơn đặt sân
+        loadUserBookings();
+        
+        // Cập nhật giao diện người dùng
+        updateUIForLoggedInUser();
+      });
+      
+      // Hàm cập nhật giao diện người dùng đã đăng nhập
+      function updateUIForLoggedInUser() {
+        const currentUser = getCurrentUser();
+        const userMenu = document.getElementById('userMenu');
+        
+        if (currentUser) {
+          userMenu.textContent = currentUser.name || 'Tài khoản';
+          userMenu.href = '/DOANWEB/settings.html';
+          
+          // Thêm menu dropdown
+          userMenu.insertAdjacentHTML('afterend', `
+            <div class="user-dropdown">
+              <a href="/DOANWEB/settings.html">Tài khoản của tôi</a>
+              <a href="/DOANWEB/lich-dat-san-cua-toi.html">Đơn đặt sân</a>
+              <a href="#" onclick="logout()">Đăng xuất</a>
+            </div>
+          `);
+        } else {
+          userMenu.textContent = 'Đăng nhập';
+          userMenu.href = '/DOANWEB/login.html';
+        }
+      }
+      
+      // Hàm hiển thị thông báo
+      function showToast(title, message, type = 'info') {
+        const oldToast = document.querySelector('.toast-notification');
+        if (oldToast) {
+          oldToast.remove();
+        }
+      
+        const icons = {
+          error: '❌',
+          success: '✅',
+          warning: '⚠️',
+          info: 'ℹ️',
+        };
+        const toast = document.createElement('div');
+        toast.className = `toast-notification ${type}`;
+        toast.innerHTML = `
+          <div class="toast-icon">${icons[type] || icons.info}</div>
+          <div class="toast-content">
+            <div class="toast-title">${title}</div>
+            <div class="toast-message">${message}</div>
+          </div>
+          <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        `;
+      
+        document.body.appendChild(toast);
+      
+        // Tự động ẩn sau 5 giây
+        setTimeout(() => {
+          if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-out';
+            setTimeout(() => toast.remove(), 300);
+          }
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Quản lý ca & duyệt nghỉ</title>
+  <link rel="stylesheet" href="/DOANWEB/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner" style="gap:12px">
+      <a href="/DOANWEB/admin.html" class="logo">SportBooking (Admin)</a>
+      <nav class="staff-top-nav" style="display:flex;gap:8px">
+        <a class="top-item" href="/DOANWEB/admin.html">📊 Bảng điều khiển</a>
+        <a class="top-item active" href="/DOANWEB/admin-ca-truc.html">🕒 Quản lý ca & duyệt nghỉ</a>
+        <a class="top-item" href="/DOANWEB/admin-phan-cong.html">📋 Phân công lịch</a>
+      </nav>
+    </div>
+  </header>
+  <main class="section"><div class="container">
+    <h1>🕒 Quản lý ca</h1>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <input id="maCa" class="form-control" placeholder="Mã ca (ví dụ C1)" />
+        <input id="tenCa" class="form-control" placeholder="Tên ca (ví dụ Ca sáng)" />
+        <label>Bắt đầu</label><input id="gioBD" type="time" class="form-control" />
+        <label>Kết thúc</label><input id="gioKT" type="time" class="form-control" />
+        <button class="btn btn-primary" id="btnSaveShift">Lưu (thêm/sửa)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="table" id="shiftTable">
+        <thead><tr>
+          <th>Mã</th><th>Tên ca</th><th>Giờ</th><th>Hành động</th>
+        </tr></thead>
+        <tbody><tr><td colspan="4">Đang tải...</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>📝 Yêu cầu hủy ca (chờ duyệt)</h3>
+      <table class="table" id="cancelManageTable">
+        <thead><tr>
+          <th>ID</th><th>NV</th><th>Ngày</th><th>Ca</th><th>Lý do</th><th>Hành động</th>
+        </tr></thead>
+        <tbody><tr><td colspan="6">Đang tải...</td></tr></tbody>
+      </table>
+    </div>
+  </div></main>
+  <script src="/DOANWEB/auth.js"></script>
+  <script src="/DOANWEB/admin-ca.js"></script>
+</body>
+</html>

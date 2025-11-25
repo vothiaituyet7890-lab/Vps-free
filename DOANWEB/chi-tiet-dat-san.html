@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chi tiết đơn đặt sân - SportBooking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">SportBooking</a>
+        <nav class="nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="gioithieu.html">Giới thiệu</a>
+          <a href="timkiem.html">Tìm kiếm</a>
+          <a href="danh-sach-san.html">Danh sách sân</a>
+          <a href="lienhe.html">Liên hệ</a>
+          <a href="login.html" class="btn btn-primary btn-sm" id="loginBtn">Đăng nhập</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="booking-detail-container">
+          <!-- Back Button -->
+          <div class="back-button-section">
+            <a href="lich-dat-san-cua-toi.html" class="back-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              Quay lại danh sách
+            </a>
+          </div>
+
+          <!-- Booking Status Banner -->
+          <div class="booking-status-banner" id="statusBanner">
+            <div class="status-icon" id="statusIcon">✅</div>
+            <div class="status-info">
+              <h2 id="statusTitle">Đặt sân thành công</h2>
+              <p id="statusDesc">Đơn đặt sân của bạn đã được xác nhận</p>
+            </div>
+          </div>
+
+          <!-- Booking ID Card -->
+          <div class="card booking-id-card">
+            <div class="booking-id-header">
+              <div>
+                <h3>Mã đơn đặt sân</h3>
+                <div class="booking-id-display" id="bookingIdDisplay">#BK123456</div>
+              </div>
+              <div class="booking-date-created">
+                <span class="label">Ngày đặt:</span>
+                <span class="value" id="dateCreated">22/10/2025 14:30</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Court Information -->
+          <div class="card detail-section">
+            <h3 class="section-title">🏟️ Thông tin sân</h3>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="detail-label">Loại sân</span>
+                <span class="detail-value" id="courtType">Sân Bóng Đá</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số sân</span>
+                <span class="detail-value" id="courtNumber">Sân 1</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Ngày đặt</span>
+                <span class="detail-value" id="bookingDate">Thứ 2, 23/10/2025</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Khung giờ</span>
+                <span class="detail-value" id="bookingTime">18:00 - 20:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer Information -->
+          <div class="card detail-section">
+            <h3 class="section-title">👤 Thông tin khách hàng</h3>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="detail-label">Họ tên</span>
+                <span class="detail-value" id="customerName">Nguyễn Văn A</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số điện thoại</span>
+                <span class="detail-value" id="customerPhone">0123456789</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Information -->
+          <div class="card detail-section">
+            <h3 class="section-title">💰 Thông tin thanh toán</h3>
+            <div class="payment-details">
+              <div class="payment-row">
+                <span class="payment-label">Giá gốc</span>
+                <span class="payment-value" id="basePrice">300.000đ</span>
+              </div>
+              <div class="payment-row discount-row" id="discountRow" style="display: none;">
+                <span class="payment-label">Giảm giá (<span id="discountCodeDisplay"></span>)</span>
+                <span class="payment-value discount" id="discountAmount">-30.000đ</span>
+              </div>
+              <div class="payment-row total-row">
+                <span class="payment-label">Tổng thanh toán</span>
+                <span class="payment-value total" id="totalAmount">300.000đ</span>
+              </div>
+              <div class="payment-method-info">
+                <span class="payment-label">Phương thức thanh toán:</span>
+                <span class="payment-method-badge" id="paymentMethod">Ví điện tử Momo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="detail-actions">
+            <button class="btn btn-secondary" onclick="window.print()">
+              🖨️ In đơn đặt sân
+            </button>
+            <button class="btn btn-danger" id="cancelBtn" onclick="showCancelModal()">
+              ❌ Hủy đặt sân
+            </button>
+          </div>
+
+          <!-- Cancellation Policy -->
+          <div class="card policy-section">
+            <h4>📋 Chính sách hủy đặt sân</h4>
+            <ul class="policy-list">
+              <li>Hủy trước 24 giờ: Hoàn 100% tiền</li>
+              <li>Hủy trước 12 giờ: Hoàn 50% tiền</li>
+              <li>Hủy trong vòng 12 giờ: Không hoàn tiền</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="modal-overlay" id="cancelModal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>⚠️ Xác nhận hủy đặt sân</h3>
+          <button class="modal-close" onclick="closeCancelModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn hủy đơn đặt sân này?</p>
+          <p class="warning-text">Lưu ý: Việc hủy đặt sân sẽ tuân theo chính sách hủy của chúng tôi.</p>
+          <div class="cancel-reason">
+            <label for="cancelReason">Lý do hủy (không bắt buộc):</label>
+            <textarea id="cancelReason" rows="3" placeholder="Nhập lý do hủy đặt sân..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeCancelModal()">Đóng</button>
+          <button class="btn btn-danger" onclick="confirmCancel()">Xác nhận hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>© 2025 SportBooking</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="chi-tiet-dat-san.js"></script>
+  </body>
+</html>
